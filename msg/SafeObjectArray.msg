@@ -1,0 +1,1 @@
+SafeObject[] safe_objects

@@ -50,6 +50,7 @@ find_package(catkin REQUIRED COMPONENTS
    FILES
    Obj.msg
    SafeObject.msg
+   SafeObjectArray.msg
    SafeSafetyAlert.msg
    SafeSensorManagement.msg
    SafeSensorStatus.msg
