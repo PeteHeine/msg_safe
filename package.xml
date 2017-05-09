@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>safe_sensor</name>
+  <name>msg_safe</name>
   <version>0.0.0</version>
   <description>The safe_sensor package</description>
 
