@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+	<!-- Converting MarkerArray to safe message type SafeObstacleArray.  -->
+	<node type="VisualizationMarkerArray2MsgSafe.py" name="marker_array_2_msg_safe_camera" pkg="msg_safe" respawn="true" output="screen">
+		<param name="topicVisualizeIn" value="/det/Multisense/yolo/BBoxes3d" />
+		<param name="topicMsgSafeOut" value="/det/Multisense/yolo/SafeObstacleArray" />
+	</node>
+</launch>
