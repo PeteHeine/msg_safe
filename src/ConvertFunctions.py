@@ -2,14 +2,12 @@
 
 #from msg_boundingbox.msg import Boundingbox, Boundingboxes
 from visualization_msgs.msg import Marker, MarkerArray
-#from visualization_msgs.msg import MarkerArray
-from msg_safe.msg import Obj,SafeObject,SafeObjectArray 
+from msg_safe.msg import SafeObject,SafeObjectArray 
 import copy 
-def msgSafe2marker(msg_safe_in):
-    
-    # Remember to delete below line
-    #msg_safe_in = SafeObject() 
-    
+
+
+def safeObject2marker(msg_safe_in):
+
     marker_out = Marker()
     
     marker_out.header = msg_safe_in.header
@@ -30,10 +28,23 @@ def msgSafe2marker(msg_safe_in):
     marker_out.scale.y = msg_safe_in.obj_size.y
     marker_out.scale.z = msg_safe_in.obj_size.z
     
-    return copy.deepcopy(marker_out)
+    
+    return marker_out
+
+def safeObjectArray2markerArray(safeObjectArray):
+    markerArray = MarkerArray()
+    
+    # A dummie marker array is created to clear other markers. 
+    
+    for safe_object in safeObjectArray.safe_objects:
+
+        # Deepcopy to avoid setting all markers point to the last marker.         
+        markerArray.markers.append(copy.deepcopy(safeObject2marker(safe_object)))
+    
+    return markerArray
 
 
-def marker2msgSafe(marker_in):
+def marker2safeObject(marker_in):
     safe_object = SafeObject()
     
     safe_object.header = marker_in.header
@@ -60,4 +71,12 @@ def marker2msgSafe(marker_in):
     safe_object.obj_size.z = marker_in.scale.z
     safe_object.obj_size.quality = 0
     
-    return copy.deepcopy(safe_object)
+    return safe_object
+
+def markerArray2safeObjectArray(markerArray):
+    safeObjects = SafeObjectArray()
+    for marker in markerArray.markers:
+        # For visualization a dummie markers is created with a deleteall-type. This marker needs to be skipped.
+        if marker.action is not marker.DELETEALL:
+            safeObjects.safe_objects.append(copy.deepcopy(marker2safeObject(marker)))
+    return safeObjects

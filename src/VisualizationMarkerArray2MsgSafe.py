@@ -2,9 +2,9 @@
 
 import rospy
 
-from visualization_msgs.msg import Marker, MarkerArray
-from msg_safe.msg import Obj,SafeObject,SafeObjectArray 
-from ConvertFunctions import marker2msgSafe
+from visualization_msgs.msg import MarkerArray
+from msg_safe.msg import SafeObjectArray 
+from ConvertFunctions import markerArray2safeObjectArray
 
 rospy.init_node('marker_array_2_msg_safe', anonymous=False)
 nodeName = rospy.get_name()
@@ -16,16 +16,8 @@ topicMsgSafeOut = rospy.get_param(nodeName+'/topicMsgSafeOut', nodeName+'/msg_sa
 
 pub_msg_safe = rospy.Publisher(topicMsgSafeOut, SafeObjectArray , queue_size=0)
 
-def callback_MarkerArray(markerArray):
-    
-    safeObjects = SafeObjectArray()
-    for marker in markerArray.markers:
-        # For visualization a dummie markers with deleteall. This needs to be skipped. 
-        if marker.action is not marker.DELETEALL:
-            safeObjects.safe_objects.append(marker2msgSafe(marker))            
-
-    
-    pub_msg_safe.publish(safeObjects)
+def callback_MarkerArray(markerArray):    
+    pub_msg_safe.publish(markerArray2safeObjectArray(markerArray))
     
 rospy.Subscriber(topicVisualizeIn, MarkerArray, callback_MarkerArray,queue_size=None)  
 # main
