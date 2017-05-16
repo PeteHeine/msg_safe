@@ -54,4 +54,4 @@ Import messages in python scripts.
 - Update the safe-protocol or update ConvertFunctions.py to actually match the safe protocol... In visaulization_msgs/Marker the position refers to the center of a visualization-shape (the center of a rectangle, cylinder etc). In the safe-protocol the rectangle is specified by (some) lower corner. PC: I definitly prefer visaulization_msgs/Marker it is less ambigious and I like that the object is specified by its center point.
 - Using standard msgs from ros and extend with some quality measure
 	- Instead of Obj position. Use geometry_msgs/pose.msg with position of type Point and orientation of type Quanternion
-- Test
+- Use geometry_msgs/point in Obj instead of x,y,z. 
