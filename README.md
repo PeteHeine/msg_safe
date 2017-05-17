@@ -26,7 +26,7 @@ Full description of detected object
 	Obj obj_position
 	Obj obj_lin_vel
 	Obj obj_size
-	ObjPose obj_orientation
+	ObjOrientation obj_orientation
 
 #### SafeObjectArray.msg
 Array of the SafeObject message. 

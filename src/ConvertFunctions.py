@@ -19,11 +19,11 @@ def safeObject2marker(msg_safe_in):
     marker_out.pose.position.x = msg_safe_in.obj_position.x
     marker_out.pose.position.y = msg_safe_in.obj_position.y
     marker_out.pose.position.z = msg_safe_in.obj_position.z
-    marker_out.pose.orientation.x = 0
-    marker_out.pose.orientation.y = 0
-    marker_out.pose.orientation.z = 0
-    marker_out.pose.orientation.w = 1
-    
+    marker_out.pose.orientation.x = msg_safe_in.obj_orientation.orientation.x
+    marker_out.pose.orientation.y = msg_safe_in.obj_orientation.orientation.y
+    marker_out.pose.orientation.z = msg_safe_in.obj_orientation.orientation.z
+    marker_out.pose.orientation.w = msg_safe_in.obj_orientation.orientation.w
+   
     marker_out.scale.x = msg_safe_in.obj_size.x
     marker_out.scale.y = msg_safe_in.obj_size.y
     marker_out.scale.z = msg_safe_in.obj_size.z
@@ -51,10 +51,11 @@ def marker2safeObject(marker_in):
     safe_object.id = marker_in.id
     
     safe_object.det_confidence_level = marker_in.color.a
-#    safe_object.orientation.x = marker_in.pose.orientation.x
-#    safe_object.orientation.y = marker_in.pose.orientation.y
-#    safe_object.orientation.z = marker_in.pose.orientation.z
-#    safe_object.orientation.w = marker_in.pose.orientation.w
+    safe_object.obj_orientation.orientation.x = marker_in.pose.orientation.x
+    safe_object.obj_orientation.orientation.y = marker_in.pose.orientation.y
+    safe_object.obj_orientation.orientation.z = marker_in.pose.orientation.z
+    safe_object.obj_orientation.orientation.w = marker_in.pose.orientation.w
+    safe_object.obj_orientation.quality = 0
 
     safe_object.obj_position.x = marker_in.pose.position.x
     safe_object.obj_position.y = marker_in.pose.position.y
