@@ -10,6 +10,7 @@ project(safe_sensor_msgs)
 find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
+  geometry_msgs
   message_generation
 )
 
@@ -50,6 +51,7 @@ find_package(catkin REQUIRED COMPONENTS
  add_message_files(
    FILES
    Obj.msg
+   ObjOrientation.msg
    SafeObject.msg
    SafeObjectArray.msg
    SafeSafetyAlert.msg
@@ -75,6 +77,7 @@ find_package(catkin REQUIRED COMPONENTS
 generate_messages(
   DEPENDENCIES
   std_msgs
+  geometry_msgs
 )
 
 ################################################

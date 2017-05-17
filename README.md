@@ -3,12 +3,18 @@ Ros messages for the SAFE project.
 Package includes scripts and launch files for converting between SafeObstacleArray and MarkerArray (A ROS msg type used for visualization in rviz). 
 
 #### Obj.msg
-Containing x, y, z and quality
+Contains x, y, z and quality
 
 	float64 x    	# x component 
 	float64 y    	# y component 
 	float64 z    	# z component 
 	float32 quality	# quality of the estimation
+
+#### ObjOrientation.msg
+Contains orientation and quality
+
+	geometry_msgs/Quaternion orientation 	# Specifying orientation 
+	float32 quality    			# quality of the estimation
 
 #### SafeObject.msg
 Full description of detected object 
@@ -20,6 +26,7 @@ Full description of detected object
 	Obj obj_position
 	Obj obj_lin_vel
 	Obj obj_size
+	ObjPose obj_orientation
 
 #### SafeObjectArray.msg
 Array of the SafeObject message. 
