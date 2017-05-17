@@ -55,7 +55,7 @@ Array of the SafeObject message.
 ## Import in python
 Import messages in python scripts. 
 
-	from msg_safe.msg import Obj,SafeObject,SafeObjectArray
+	from safe_sensor_msgs.msg import Obj,SafeObject,SafeObjectArray
 
 ## Todo and considerations
 - Update the safe-protocol or update ConvertFunctions.py to actually match the safe protocol... In visaulization_msgs/Marker the position refers to the center of a visualization-shape (the center of a rectangle, cylinder etc). In the safe-protocol the rectangle is specified by (some) lower corner. PC: I definitly prefer visaulization_msgs/Marker it is less ambigious and I like that the object is specified by its center point.
