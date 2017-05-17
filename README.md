@@ -1,4 +1,4 @@
-# msg_safe
+# safe_sensor_msgs
 Ros messages for the SAFE project. 
 Package includes scripts and launch files for converting between SafeObstacleArray and MarkerArray (A ROS msg type used for visualization in rviz). 
 
