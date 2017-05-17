@@ -13,16 +13,19 @@ def safeObject2marker(msg_safe_in):
     marker_out.header = msg_safe_in.header
     marker_out.id = msg_safe_in.id
     
+    marker_out.ns = msg_safe_in.type
+
     # The alpha channels is used for setting the confidence
     marker_out.color.a = msg_safe_in.det_confidence_level
 
     marker_out.pose.position.x = msg_safe_in.obj_position.x
     marker_out.pose.position.y = msg_safe_in.obj_position.y
     marker_out.pose.position.z = msg_safe_in.obj_position.z
-    marker_out.pose.orientation.x = msg_safe_in.obj_orientation.orientation.x
-    marker_out.pose.orientation.y = msg_safe_in.obj_orientation.orientation.y
-    marker_out.pose.orientation.z = msg_safe_in.obj_orientation.orientation.z
-    marker_out.pose.orientation.w = msg_safe_in.obj_orientation.orientation.w
+    marker_out.pose.orientation = msg_safe_in.obj_orientation.orientation
+#    marker_out.pose.orientation.x = msg_safe_in.obj_orientation.orientation.x
+#    marker_out.pose.orientation.y = msg_safe_in.obj_orientation.orientation.y
+#    marker_out.pose.orientation.z = msg_safe_in.obj_orientation.orientation.z
+#    marker_out.pose.orientation.w = msg_safe_in.obj_orientation.orientation.w
    
     marker_out.scale.x = msg_safe_in.obj_size.x
     marker_out.scale.y = msg_safe_in.obj_size.y
@@ -49,12 +52,15 @@ def marker2safeObject(marker_in):
     
     safe_object.header = marker_in.header
     safe_object.id = marker_in.id
-    
+
+    safe_object.type = marker_in.ns
+
     safe_object.det_confidence_level = marker_in.color.a
-    safe_object.obj_orientation.orientation.x = marker_in.pose.orientation.x
-    safe_object.obj_orientation.orientation.y = marker_in.pose.orientation.y
-    safe_object.obj_orientation.orientation.z = marker_in.pose.orientation.z
-    safe_object.obj_orientation.orientation.w = marker_in.pose.orientation.w
+    safe_object.obj_orientation.orientation = marker_in.pose.orientation
+#    safe_object.obj_orientation.orientation.x = marker_in.pose.orientation.x
+#    safe_object.obj_orientation.orientation.y = marker_in.pose.orientation.y
+#    safe_object.obj_orientation.orientation.z = marker_in.pose.orientation.z
+#    safe_object.obj_orientation.orientation.w = marker_in.pose.orientation.w
     safe_object.obj_orientation.quality = 0
 
     safe_object.obj_position.x = marker_in.pose.position.x

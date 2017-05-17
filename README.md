@@ -21,7 +21,7 @@ Full description of detected object
 	
 	Header header
 	int32 id       			# ID of the obstacle
-	int32 type     			# dynamic/static, positive/negative, human/animal, heat signature, etc.
+	stringtype     			# dynamic/static, positive/negative, human/animal, heat signature, etc.
 	float32 det_confidence_level 	# confidence level of the detection
 	Obj obj_position
 	Obj obj_lin_vel
@@ -59,6 +59,10 @@ Import messages in python scripts.
 
 ## Todo and considerations
 - Update the safe-protocol or update ConvertFunctions.py to actually match the safe protocol... In visaulization_msgs/Marker the position refers to the center of a visualization-shape (the center of a rectangle, cylinder etc). In the safe-protocol the rectangle is specified by (some) lower corner. PC: I definitly prefer visaulization_msgs/Marker it is less ambigious and I like that the object is specified by its center point.
-- Using standard msgs from ros and extend with some quality measure
-	- Instead of Obj position. Use geometry_msgs/pose.msg with position of type Point and orientation of type Quanternion
-- Use geometry_msgs/point in Obj instead of x,y,z. 
+- Consider merging obj_position and obj_orientation into a single geometry_msgs/pose message, however this would also require two quality values. 
+
+
+## Updates since revision 5 (2017-05-09)
+- SafeObject has been updated to only have one object per message (E.g. Obj[] obj_position --> Obj obj_position). SafeObjectArray is created to contain multiple SafeObjetcs. Reason: The 'float32 det_confidence_level' is not a array, so it is only possible to have one confidence_level for all the detected obstacles. Another problem with early SafeObject is that obj_position[], obj_lin_vel[] and obj_size[] could potentially have a different number of instances. 
+- The ObjOrientation.msg is added as a message and in the SafeObject. Reason: The velodyne sensor is able to provide orientation of obstacles... Orientation is also added to avoid lossing information when converting between markerArray and SafeObjectArray (markerArray contains orientation information). 
+- In SafeObject the 'int32 type' is changed to a string (string type). In this way each sensor may publish as many class-types as desired and merging of classes can be handled at a later stage. This also makes converting between SafeObjectArray and markerArray more convenient. (markerArray.ns = SafeObjectArray.type)
