@@ -3,7 +3,7 @@
 import rospy
 
 from visualization_msgs.msg import MarkerArray
-from msg_safe.msg import SafeObjectArray 
+from safe_sensor_msgs.msg import SafeObjectArray 
 from ConvertFunctions import markerArray2safeObjectArray
 
 rospy.init_node('marker_array_2_msg_safe', anonymous=False)
