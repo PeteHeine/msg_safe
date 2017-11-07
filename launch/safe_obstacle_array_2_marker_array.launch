@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 	<!-- Converting MarkerArray to safe message type SafeObstacleArray.  -->
-	<node type="MsgSafe2VisualizationMarkerArray.py" name="safe_obstacle_array_2_marker_array" pkg="msg_safe" respawn="true" output="screen">
+	<node type="MsgSafe2VisualizationMarkerArray.py" name="safe_obstacle_array_2_marker_array" pkg="safe_sensor_msgs" respawn="true" output="screen">
 		<param name="topicMsgSafeIn" value="/yolo/safeObstacleArray/Multisense" />
 		<param name="topicVisualizeOut" value="/yolo/__BBox3d__/Multisense" />
 	</node>

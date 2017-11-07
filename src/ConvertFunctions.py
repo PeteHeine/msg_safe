@@ -2,7 +2,7 @@
 
 #from msg_boundingbox.msg import Boundingbox, Boundingboxes
 from visualization_msgs.msg import Marker, MarkerArray
-from msg_safe.msg import SafeObject,SafeObjectArray 
+from safe_sensor_msgs.msg import SafeObject,SafeObjectArray 
 import copy 
 
 

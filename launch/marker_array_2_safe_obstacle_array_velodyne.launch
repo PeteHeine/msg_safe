@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 	<!-- Converting MarkerArray to safe message type SafeObstacleArray.  -->
-	<node type="VisualizationMarkerArray2MsgSafe.py" name="marker_array_2_msg_safe_velodyne" pkg="msg_safe" respawn="true" output="screen">
+	<node type="VisualizationMarkerArray2MsgSafe.py" name="marker_array_2_msg_safe_velodyne" pkg="safe_sensor_msgs" respawn="true" output="screen">
 		<param name="topicVisualizeIn" value="/det/velodyne/bboxes" />
 		<param name="topicMsgSafeOut" value="/det/velodyne/SafeObstacleArray" />
 	</node>
